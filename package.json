@@ -1,0 +1,46 @@
+{
+  "name": "grunt-hanson-plugin",
+  "description": "Grunt Plugin to convert HanSON files to JSON.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/timjansen/hanson",
+  "author": {
+    "name": "Tim Jansen",
+    "email": "tim@tjansen.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/timjansen/grunt-hanson-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timjansen/grunt-hanson-plugin/issues"
+  },
+  "licenses": [
+    {
+      "type": "Public",
+      "url": "https://github.com/timjansen/hanson/blob/master/LICENSE-Public"
+    },
+    {
+      "type": "Domain",
+      "url": "https://github.com/timjansen/hanson/blob/master/LICENSE-Domain"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
