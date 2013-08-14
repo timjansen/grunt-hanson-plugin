@@ -4,7 +4,7 @@ A Grunt plugin to convert <a href="https://github.com/timjansen/hanson">HanSON</
 
 ## Getting Started
 
-Installing the plugin in your Grund environment:
+Installing the plugin in your Grunt environment:
 >npm install grunt-hanson-plugin --save-dev
 
 Load the plugin in your Gruntfile:
@@ -20,7 +20,7 @@ grunt.initConfig({
   hanson_plugin: {
     your_target: {
         options: {
-        	keepLineNumbers: true
+        	keepLineNumbers: false
         },
         files: {
           'converted-file.json': 'input-file.hson',
