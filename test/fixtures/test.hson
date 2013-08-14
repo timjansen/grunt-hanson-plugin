@@ -1,0 +1,4 @@
+[true, "abc", """def
+ghi""", /* jklm
+nop */ qrst, // tuvw
+"xyz", 1]

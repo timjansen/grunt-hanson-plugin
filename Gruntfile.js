@@ -1,9 +1,6 @@
 /*
  * grunt-hanson-plugin
  * https://github.com/timjansen/hanson
- *
- * Copyright (c) 2013 Tim Jansen
- * Licensed under the Public, Domain licenses.
  */
 
 'use strict';
@@ -12,38 +9,26 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>',
-      ],
-      options: {
-        jshintrc: '.jshintrc',
-      },
-    },
-
     // Before generating any new files, remove any previously-created files.
     clean: {
       tests: ['tmp'],
     },
 
     // Configuration to be run (and then tested).
-    hanson_plugin: {
-      default_options: {
+    hanson: {
+      noLineKeeping: {
         options: {
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/result.json': 'test/fixtures/test.hson',
         },
       },
-      custom_options: {
+      lineKeeping: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
+        	keepLineNumbers: true
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/result-keeplines.json': 'test/fixtures/test.hson',
         },
       },
     },
@@ -59,15 +44,14 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'hanson_plugin', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'hanson', 'nodeunit']);
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  grunt.registerTask('default', ['test']);
 
 };

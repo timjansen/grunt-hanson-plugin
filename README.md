@@ -1,35 +1,30 @@
-# grunt-hanson-plugin
+# Hanson Grunt-Plugin
 
-> Grunt Plugin to convert HanSON files to JSON.
+A Grunt plugin to convert <a href="https://github.com/timjansen/hanson">HanSON</a> files to JSON.
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+Installing the plugin in your Grund environment:
+>npm install grunt-hanson-plugin --save-dev
 
-```shell
-npm install grunt-hanson-plugin --save-dev
-```
+Load the plugin in your Gruntfile:
+>grunt.loadNpmTasks('grunt-hanson-plugin');
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
-
-```js
-grunt.loadNpmTasks('grunt-hanson-plugin');
-```
-
-## The "hanson_plugin" task
+## The "hanson" task
 
 ### Overview
-In your project's Gruntfile, add a section named `hanson_plugin` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `hanson` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
   hanson_plugin: {
-    options: {
-      // Task-specific options go here.
-    },
     your_target: {
-      // Target-specific file lists and/or options go here.
+        options: {
+        	keepLineNumbers: true
+        },
+        files: {
+          'converted-file.json': 'input-file.hson',
+        },
     },
   },
 })
@@ -37,53 +32,10 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.keepLineNumbers
+Type: `Boolean`
+Default value: `false`
 
-A string value that is used to do something with whatever.
+If true, the HanSON processor will insert newlines so line numbers in output file and input file match.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  hanson_plugin: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  hanson_plugin: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
