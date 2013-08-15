@@ -39,3 +39,4 @@ Default value: `false`
 If true, the HanSON processor will insert newlines so line numbers in output file and input file match.
 
 
+
