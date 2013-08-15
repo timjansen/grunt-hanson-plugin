@@ -1,4 +1,4 @@
-[true, "abc", """def
-ghi""", /* jklm
+[true, "abc", `def
+ghi`, /* jklm
 nop */ qrst, // tuvw
 "xyz", 1]

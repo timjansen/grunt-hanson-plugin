@@ -39,6 +39,6 @@
     "gruntplugin", "hanson", "json"
   ],
   "dependencies": {
-    "hanson": "~0.1.0"
+    "hanson": "~1.0.0"
   }
 }
