@@ -1,7 +1,7 @@
 {
   "name": "grunt-hanson-plugin",
   "description": "Grunt Plugin to convert HanSON files to JSON.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/timjansen/hanson",
   "author": {
     "name": "Tim Jansen",
@@ -36,7 +36,9 @@
     "grunt": "~0.4.1"
   },
   "keywords": [
-    "gruntplugin", "hanson", "json"
+    "gruntplugin",
+    "hanson",
+    "json"
   ],
   "dependencies": {
     "hanson": "~1.0.0"
