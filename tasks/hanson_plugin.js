@@ -24,16 +24,16 @@ module.exports = function(grunt) {
 				});
 
 				this.files.forEach(function(f) {
-							var src = f.src != null ? f.src : f;
-							var dest = f.dest != null ? (typeof f.dest == 'string' ? f.dest : f.dest[0]) : getOutputFileName(src);
+							var src = f.src;
+							var dest = f.dest ? f.dest : src && getOutputFileName(src);
 
-							if (!grunt.file.exists(src))
+							if (!src || !grunt.file.exists(src))
 								grunt.log.warn('JSON input file "' + src + '" not found.');
 							else {
 								var hson = grunt.file.read(src);
 								var json = hanson.toJSON(hson, options.keepLineNumbers);
 								grunt.file.write(dest, json);
-								grunt.log.writeln('JSON file "' + f.dest + '" written.');
+								grunt.log.writeln('JSON file "' + dest + '" written.');
 							}
 						});
 
