@@ -22,9 +22,14 @@ grunt.initConfig({
         options: {
         	keepLineNumbers: false
         },
-        files: {
-          'converted-file.json': 'input-file.hson',
-        },
+        files: [{
+          expand: true,
+          flatten: false,
+          ext: '.outputExtension',
+          cwd: 'working/directory/of/intput/files',
+          src: ['list/of/input/filters/**/*.hson', '!exclusions'],
+          dest: 'destination/directory'
+        }],
     },
   },
 })
