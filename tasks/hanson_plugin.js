@@ -16,27 +16,40 @@ function getOutputFileName(file) {
 }
 
 module.exports = function(grunt) {
-
 	grunt.registerMultiTask('hanson', 'Converts HanSON files into JSON.',
-			function() {
-				var options = this.options({
-					keepLineNumbers : false
+		function() {
+			var options = this.options({
+				keepLineNumbers : false
+			});
+
+			this.files.forEach(function(f) {
+				var src = f.src.filter(function(filepath) {
+					// Warn on and remove invalid source files (if nonull was set).
+					if (!grunt.file.exists(filepath)) {
+						grunt.log.warn('Source file "' + filepath + '" not found.');
+						return false;
+					} else {
+						return true;
+					}
 				});
 
-				this.files.forEach(function(f) {
-							var src = f.src;
-							var dest = f.dest ? f.dest : src && getOutputFileName(src);
-
-							if (!src || !grunt.file.exists(src))
-								grunt.log.warn('JSON input file "' + src + '" not found.');
-							else {
-								var hson = grunt.file.read(src);
-								var json = hanson.toJSON(hson, options.keepLineNumbers);
-								grunt.file.write(dest, json);
-								grunt.log.writeln('JSON file "' + dest + '" written.');
-							}
-						});
-
+				var result, hson;
+				try {
+					hson =  grunt.file.read(src);
+					result = hanson.toJSON(hson, options.keepLineNumbers);
+				}
+				catch (e) {
+					var err = new Error('HanSON conversion failed.');
+					if (e.msg) {
+						err.message += ', ' + e.msg + '.';
+					}
+					err.origError = e;
+					grunt.log.warn('HanSON source "' + src + '" conversion failed.');
+					grunt.fail.warn(err);
+				}
+				
+				grunt.file.write(f.dest, result);
+				grunt.log.writeln('File "' + f.dest + '" created.');
 			});
+		});
 };
-
